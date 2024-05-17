@@ -67,7 +67,7 @@ export const Login = ({ switchAuthHandler }) => {
   const isSubmitButtonDisabled = isLoading || !formState.password.isValid || !formState.email.isValid
   return (
     <div className="login-container">
-        <Logo text={'Login Kinal Cast'}/>
+        <Logo text={'Login'}/>
         <form className="auth-form">
             <Input
                 field='email'
