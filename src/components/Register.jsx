@@ -6,11 +6,13 @@ import {
   emailValidationMessage,
   passwordValidationMessage,
   passwordConfirmationMessage,
-  validateUsernameMessage,
   validatePasswordConfir,
-  validateUsername,
   validateEmail,
   validatePassword,
+  validateLastName,
+  validateLastNameMessage,
+  validateName,
+  validateNameMessage
 } from "../shared/validators";
 import { useRegister } from "../shared/hooks";
 
@@ -23,17 +25,22 @@ export const Register = ({ switchAuthHandler }) => {
       isValid: false,
       showError: false,
     },
-    username: {
-      value: "",
-      isValid: false,
-      showError: false,
-    },
     password: {
       value: "",
       isValid: false,
       showError: false,
     },
     passwordConfir: {
+      value: "",
+      isValid: false,
+      showError: false,
+    },
+    name: {
+      value: "",
+      isValid: false,
+      showError: false,
+    },
+    lastName: {
       value: "",
       isValid: false,
       showError: false,
@@ -56,14 +63,17 @@ export const Register = ({ switchAuthHandler }) => {
       case "email":
         isValid = validateEmail(value);
         break;
-      case "username":
-        isValid = validateUsername(value);
-        break;
       case "password":
         isValid = validatePassword(value);
         break;
       case "passwordConfir":
         isValid = validatePasswordConfir(formState.password.value, value);
+        break;
+      case "name":
+        isValid = validateName(value);
+        break;
+      case "lastName":
+        isValid = validateLastName(value);
         break;
       default:
         break;
@@ -84,7 +94,8 @@ export const Register = ({ switchAuthHandler }) => {
     register(
       formState.email.value,
       formState.password.value,
-      formState.username.value
+      formState.name.value,
+      formState.lastName.value
     );
   };
 
@@ -92,8 +103,8 @@ export const Register = ({ switchAuthHandler }) => {
     isLoading ||
     !formState.password.isValid ||
     !formState.email.isValid ||
-    !formState.username.isValid ||
-    !formState.passwordConfir.isValid;
+    !formState.name.isValid ||
+    !formState.lastName.isValid;
 
   return (
     <div className="register-container">
@@ -108,16 +119,6 @@ export const Register = ({ switchAuthHandler }) => {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
-        />
-        <Input
-          field="username"
-          label="Username"
-          value={formState.username.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.username.showError}
-          validationMessage={validateUsernameMessage}
         />
         <Input
           field="password"
@@ -138,6 +139,26 @@ export const Register = ({ switchAuthHandler }) => {
           onBlurHandler={handleInputValidationOnBlur}
           showErrorMessage={formState.passwordConfir.showError}
           validationMessage={passwordConfirmationMessage}
+        />
+        <Input
+          field="name"
+          label="Name"
+          value={formState.name.value}
+          onChangeHandler={handleInputValueChange}
+          type="text"
+          onBlurHandler={handleInputValidationOnBlur}
+          showErrorMessage={formState.name.showError}
+          validationMessage={validateNameMessage}
+        />
+        <Input
+          field="lastName"
+          label="LastName"
+          value={formState.lastName.value}
+          onChangeHandler={handleInputValueChange}
+          type="text"
+          onBlurHandler={handleInputValidationOnBlur}
+          showErrorMessage={formState.lastName.showError}
+          validationMessage={validateLastNameMessage}
         />
         <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
           Register

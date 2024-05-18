@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Content } from "../../components/dashboard/Content";
