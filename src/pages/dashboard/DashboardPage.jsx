@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Content } from "../../components/dashboard/Content";
+import { HotelManagement } from '../adminPage/AdminPage'; 
 import { useUserDetails } from "../../shared/hooks";
+
 
 import "./dashboardPage.css";
 
@@ -15,6 +17,8 @@ export const DashboardPage = () => {
   return (
     <div className="dashboard-container">
       <h1>DASHBOARDPAGEEEEEEE</h1>
+      <HotelManagement /> {HotelManagement}
     </div>
   );
 };
+
