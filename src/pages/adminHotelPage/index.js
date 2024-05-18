@@ -1,0 +1,1 @@
+export { AdminHotelPage } from './AdminHotelPage';

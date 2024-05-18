@@ -2,7 +2,7 @@ import axios from "axios";
 import { logout } from "../shared/hooks";
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:3001/hoteles/v1',
+    baseURL: 'http://127.0.0.1:8080/hoteles/v1',
     timeout: 5000
 })
 
@@ -39,6 +39,19 @@ export const register = async (data) => {
         return{
             error: true,
             e
+        }
+    }
+}
+
+export const getUserEmail = async (email) =>{
+    try{
+        console.log(email, email)
+        return await apiClient.get(`/user/email/${email}`)
+    }catch(e){
+        return{
+            error: true,
+            e
+            
         }
     }
 }

@@ -8,13 +8,14 @@ export const useRegister = () => {
 
     const navigate = useNavigate()
 
-    const register = async(email, password, username) =>{
+    const register = async(email, password, name, lastName) =>{
         setIsLoading(true)
 
         const response = await registerRequest({
             email,
             password,
-            username
+            name,
+            lastName
         })
 
         setIsLoading(false)
