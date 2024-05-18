@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import logo from '../assets/img/kha.jpeg'
 
 export const Logo = ({text}) => {

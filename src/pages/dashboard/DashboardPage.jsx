@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { Navbar } from "../../components/navbars/NavBar";
 import { Content } from "../../components/dashboard/Content";
 import { useUserDetails } from "../../shared/hooks";
 
@@ -15,7 +16,7 @@ export const DashboardPage = () => {
 
   return (
     <div className="dashboard-container">
-      <h1>DASHBOARDPAGEEEEEEE</h1>
+      <Navbar />
     </div>
   );
 };

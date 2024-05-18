@@ -21,11 +21,15 @@ export const useLogin = () => {
             );
         }
 
+        /*----------------Guardar Token ---------------------------- */
         const { userDetails } = response.data;
         localStorage.setItem('user', JSON.stringify(userDetails));
 
+        /* ----------------------Guardar ID de Usuario -------------------*/ 
         const userForRoleResponse = await getUserEmailRequest(email);
-        console.log(email, userForRoleResponse);
+        const { idUser } = userForRoleResponse.data;
+        console.log('Este es el id del usuario: ', idUser)
+        localStorage.setItem('IdUser', JSON.stringify(idUser));
 
         if (userForRoleResponse.error) {
             return toast.error('Error al obtener la información del usuario');

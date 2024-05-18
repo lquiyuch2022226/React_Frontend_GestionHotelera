@@ -56,6 +56,30 @@ export const getUserEmail = async (email) =>{
     }
 }
 
+export const getUserById = async (id) =>{
+    try{
+        return await apiClient.get(`/user`, id) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
+export const userPut = async (idUser, data) =>{
+    try{
+        return await apiClient.put(`/user/${idUser}`, data)
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
 const checkResponseStatus = (e) => {
     const responseStatus = e?.response?.status
 
