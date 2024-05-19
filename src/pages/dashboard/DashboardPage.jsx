@@ -17,6 +17,7 @@ export const DashboardPage = () => {
   return (
     <div className="dashboard-container">
       <Navbar />
+      <Content />
     </div>
   );
 };

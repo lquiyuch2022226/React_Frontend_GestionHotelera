@@ -88,12 +88,11 @@ export const UserSettings = ({ settings, saveSettings }) => {
     event.preventDefault()
 
     saveSettings({
+        id: localStorage.getItem("IdUser").replace(/\"/g, ''),
+        email: formState.email.value,
         name: formState.name.value,
         lastName: formState.lastName.value,
-        email: formState.email.value,
     })
-
-    console.log(formState)
   }
 
   const isSubmitButtonDisabled = !formState.name.isValid ||

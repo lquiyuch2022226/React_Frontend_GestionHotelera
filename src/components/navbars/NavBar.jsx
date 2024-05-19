@@ -30,6 +30,10 @@ export const Navbar = () => {
 
     const navigate = useNavigate()
 
+    const handleNavigateToHomePage = () => {
+        navigate('/')
+    }
+
     const handleNavigateToAuthPage = () => {
         navigate('/auth')
     }
@@ -50,6 +54,7 @@ export const Navbar = () => {
                     <NavButton text='Login' onClickHandler={handleNavigateToAuthPage}/>
                 ) : (
                     <div>
+                        <NavButton text='Home' onClickHandler={handleNavigateToHomePage}/>
                         <NavButton text='My Account' onClickHandler={handleNavigateToSettingPage}/>
                         <NavButton text='Logout' onClickHandler={handleLogout}/>
                     </div>

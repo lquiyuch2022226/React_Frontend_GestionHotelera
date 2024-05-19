@@ -68,15 +68,16 @@ export const getUserById = async (id) =>{
     }
 }
 
-export const userPut = async (idUser, data) =>{
-    try{
-        return await apiClient.put(`/user/${idUser}`, data)
-    }catch(e){
-        return{
+export const userPut = async (data) => {
+    try {
+        console.log(data,'data en api');
+
+        return await apiClient.put(`/user/put`, data.data);
+    } catch (e) {
+        return {
             error: true,
             e
-            
-        }
+        };
     }
 }
 

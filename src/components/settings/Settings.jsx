@@ -4,7 +4,6 @@ import { LoadingSpinner } from "../LoadingSpinner";
 
 export const Settings = () => {
     const {userSettings, isFetching, saveSettings} = useUserSettings()
-    console.log(userSettings, saveSettings, 'hola')
     if(isFetching){
         return <LoadingSpinner/>
     }
