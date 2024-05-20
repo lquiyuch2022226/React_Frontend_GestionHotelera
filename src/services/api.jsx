@@ -7,30 +7,30 @@ const apiClient = axios.create({
 })
 
 const api = axios.create({
-    baseURL: "http://127.0.0.1:3000/hoteles/v1",
+    baseURL: "http://127.0.0.1:8080/hoteles/v1/hotels",
     timeout: 5000
 })
 
 apiClient.interceptors.request.use(
-    (config) =>{
+    (config) => {
         const userDetails = localStorage.getItem('user')
 
-        if(userDetails){
-            const token =  JSON.parse(userDetails).token
+        if (userDetails) {
+            const token = JSON.parse(userDetails).token
             config.headers.Authorization = `Bearer ${token}`
         }
         return config
     },
-    (e) =>{
+    (e) => {
         return Promise.reject(e)
     }
 )
 
 export const login = async (data) => {
-    try{
+    try {
         return await apiClient.post('/auth/login', data)
-    }catch(e){
-        return{
+    } catch (e) {
+        return {
             error: true,
             e
         }
@@ -38,25 +38,25 @@ export const login = async (data) => {
 }
 
 export const register = async (data) => {
-    try{
+    try {
         return await apiClient.post('/auth/register', data)
-    }catch(e){
-        return{
+    } catch (e) {
+        return {
             error: true,
             e
         }
     }
 }
 
-export const getUserEmail = async (email) =>{
-    try{
+export const getUserEmail = async (email) => {
+    try {
         console.log(email, email)
         return await apiClient.get(`/user/email/${email}`)
-    }catch(e){
-        return{
+    } catch (e) {
+        return {
             error: true,
             e
-            
+
         }
     }
 }
@@ -72,21 +72,44 @@ export const getHotel = async () => {
     }
 }
 
-export const postHotel = async (nameHotel, address, category, services, numStars, idUserAdmin) => {
+export const postHotel = async (hotelData) => {
     try {
-        return await api.post('/addHotel', {nameHotel,  address, category, services, numStars, idUserAdmin});
-    } catch (error) {
+        return await api.post('/addHotel', hotelData);
+    } catch (e) {
         return {
             error: true,
-            message: error.message
+            e
         };
     }
 };
 
+export const putHotel = async (hotelId, hotelData) => {
+    try {
+        return await api.put(`/updateHotel/${hotelId}`, hotelData);
+    } catch (error) {
+        // Manejo de errores
+        console.error('Error updating hotel:', error);
+        return {
+            error: true,
+            message: 'Error updating hotel'
+        };
+    }
+};
+
+export const deleteHotel = async (hotelId) => {
+    try {
+        return await api.delete(`/deleteHotel`, hotelId);
+    } catch (e) {
+        console.error('Error in deleteHotel:', e);
+        throw e;
+    }
+};
+
+
 const checkResponseStatus = (e) => {
     const responseStatus = e?.response?.status
 
-    if(responseStatus){
+    if (responseStatus) {
         (responseStatus === 401 || responseStatus === 403) && logout
     }
 }

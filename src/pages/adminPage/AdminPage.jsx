@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import axios from 'axios';
-import './adminPage.css';
 import { Chart, registerables } from 'chart.js';
+import { postHotel, getHotel, putHotel, deleteHotel } from "../../services/api";
+import './adminPage.css';
 
 Chart.register(...registerables);
 
@@ -21,20 +21,27 @@ export const HotelManagement = () => {
     labels: [],
     datasets: [],
   });
+  const [editMode, setEditMode] = useState(false);
+  const [editHotelId , setEditHotelId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('/getHotel');
+      setLoading(true);
+      const response = await getHotel('/getHotel');
       setHotels(response.data.hotels);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching hotels:', error);
-      setHotels([]);
+      setMessage('Error fetching hotels');
+      setLoading(false);
     }
   };
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('/stats/hotel');
+      const response = await getHotel('/getHotel');
       const data = response.data;
       setStats({
         labels: ['Total Hotels'],
@@ -48,6 +55,7 @@ export const HotelManagement = () => {
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
+      setMessage('Error fetching stats');
       setStats({
         labels: [],
         datasets: [],
@@ -67,25 +75,59 @@ export const HotelManagement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/addHotel', form);
+      setLoading(true);
+      if (editMode) {
+        const response = await putHotel(form); // Llama a putHotel en lugar de postHotel
+        console.log('Hotel updated successfully:', response.data);
+        setMessage('Hotel updated successfully');
+      } else {
+        const response = await postHotel(form);
+        console.log('Hotel added successfully:', response.data);
+        setMessage('Hotel added successfully');
+      }
       fetchHotels();
+      setForm({
+        nameHotel: '',
+        address: '',
+        category: '',
+        services: '',
+        numStars: '',
+        idUserAdmin: '',
+        state: true,
+      });
+      setEditMode(false);
+      setEditHotelId(null);
     } catch (error) {
-      console.error('Error adding hotel:', error);
+      console.error('Error adding/updating hotel:', error);
+      setMessage('Error adding/updating hotel');
     }
+    setLoading(false);
   };
 
-  const handleDelete = async (id) => {
+  const handleEdit = (hotel) => {
+    setForm({ ...hotel }); // Establece los valores del formulario con los datos del hotel
+    setEditMode(true);
+    setEditHotelId(hotel._id);
+  };
+
+  const handleDelete = async (hotelId) => {
     try {
-      await axios.delete(`/deleteHotel/${id}`);
+      setLoading(true);
+      const response = await deleteHotel(hotelId);
+      console.log('Hotel eliminado exitosamente:', response.data);
+      setMessage('Hotel eliminado exitosamente');
       fetchHotels();
     } catch (error) {
-      console.error('Error deleting hotel:', error);
+      console.error('Error al eliminar hotel:', error);
+      setMessage('Error al eliminar hotel');
     }
+    setLoading(false);
   };
 
   return (
     <div className="hotel-management-container">
       <h1>Gestión de Hoteles</h1>
+      {message && <div className="message">{message}</div>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -135,16 +177,25 @@ export const HotelManagement = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Agregar Hotel</button>
+        <button className="submit-button" type="submit" disabled={loading}>
+          {editMode ? 'Actualizar Hotel' : 'Agregar Hotel'}
+        </button>
       </form>
-      <ul>
-        {hotels && hotels.map((hotel) => (
-          <li key={hotel._id}>
-            {hotel.nameHotel} - {hotel.address}
-            <button onClick={() => handleDelete(hotel._id)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {hotels && hotels.map((hotel) => (
+            <li key={hotel._id}>
+              {hotel.nameHotel} - {hotel.address}
+              <div className="button-container">
+                <button className="edit-button" onClick={() => handleEdit(hotel)}>Editar</button>
+                <button className="delete-button" onClick={() => handleDelete(hotel._id)}>Eliminar</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
       <div className="statistics-container">
         <h2>Estadísticas de Hoteles</h2>
         <Bar data={stats} />
