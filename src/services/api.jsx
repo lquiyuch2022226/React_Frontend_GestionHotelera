@@ -88,3 +88,13 @@ const checkResponseStatus = (e) => {
         (responseStatus === 401 || responseStatus === 403) && logout
     }
 }
+
+
+export const getHotels = async () => {
+    try {
+        return await apiClient.get("/hotel/")
+    } catch (e){
+        error: true,
+        e
+    }
+}
