@@ -1,28 +1,23 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import "./Header.css";
-import { BiMenuAltRight } from "react-icons/bi";
-import { getMenuStyles } from "../../utils/common";
-import useHeaderColor from "../../hooks/useHeaderColor";
+//import { BiMenuAltRight } from "react-icons/bi";
+import { getMenuStyles } from "../../utils/common.js";
+import { useHeaderColor } from "../../shared/hooks";
+import { useUserDetails } from "../../shared/hooks";
+import { useNavigate } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import ProfileMenu from "../ProfileMenu/ProfileMenu";
-import AddPropertyModal from "../AddPropertyModal/AddPropertyModal";
-import useAuthCheck from "../../hooks/useAuthCheck.jsx";
 
-const Header = () => {
+export const Header = () => {
     const [menuOpened, setMenuOpened] = useState(false);
     const headerColor = useHeaderColor();
-    const [modalOpened, setModalOpened] = useState(false);
     const { isLogged, logout } = useUserDetails()
-    const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-    const { validateLogin } = useAuthCheck();
 
     const navigate = useNavigate()
 
     const handleNavigateToHomePage = () => {
-        navigate('/')
+        navigate('/home')
     }
 
     const handleNavigateToAuthPage = () => {
@@ -42,7 +37,7 @@ const Header = () => {
             <div className="flexCenter innerWidth paddings h-container">
                 {/* logo */}
                 <Link to="/">
-                    <img src="../" alt="logo" width={100} />
+                    <img src="../../assets/img/kha.jpeg" alt="logo" width={100} />
                 </Link>
 
                 {/* menu */}
@@ -56,20 +51,18 @@ const Header = () => {
                         className="flexCenter h-menu"
                         style={getMenuStyles(menuOpened)}
                     >
-                        <NavLink to="/properties">Properties</NavLink>
+                        <a onClick={handleNavigateToHomePage}>Home</a>
 
-                        <a href="mailto:zainkeepscode@gmail.com">Contact</a>
-
-                        {/* add property */}
-                        <div onClick={handleAddPropertyClick}>Add Property</div>
-                        <AddPropertyModal opened={modalOpened} setOpened={setModalOpened} />
+                        <a onClick={handleNavigateToSettingPage}>My Account</a>
                         {/* login button */}
                         {!isLogged ? (
                             <button className="button" onClick={handleNavigateToAuthPage}>
                                 Login
                             </button>
                         ) : (
-                            <ProfileMenu user={user} logout={handleLogout} />
+                            <button className="button" onClick={handleLogout}>
+                                Logout
+                            </button>
                         )}
                     </div>
                 </OutsideClickHandler>
@@ -79,7 +72,7 @@ const Header = () => {
                     className="menu-icon"
                     onClick={() => setMenuOpened((prev) => !prev)}
                 >
-                    <BiMenuAltRight size={30} />
+                    {/*<BiMenuAltRight size={30} />*/}
                 </div>
             </div>
         </section>
