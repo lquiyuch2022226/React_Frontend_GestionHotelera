@@ -4,6 +4,7 @@ import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Navbar } from "../../components/navbars/NavBar";
 import { Content } from "../../components/dashboard/Content";
 import { useUserDetails } from "../../shared/hooks";
+import { Header } from '../../components/header/Header'
 
 import "./dashboardPage.css";
 
