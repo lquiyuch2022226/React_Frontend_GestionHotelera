@@ -22,7 +22,7 @@ export const HotelManagement = () => {
     datasets: [],
   });
   const [editMode, setEditMode] = useState(false);
-  const [editHotelId , setEditHotelId] = useState(null);
+  const [editHotelId, setEditHotelId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -77,10 +77,11 @@ export const HotelManagement = () => {
     try {
       setLoading(true);
       if (editMode) {
-        const response = await putHotel(form); // Llama a putHotel en lugar de postHotel
+        const response = await putHotel(editHotelId, form); // Llama a putHotel en modo edición
         console.log('Hotel updated successfully:', response.data);
         setMessage('Hotel updated successfully');
       } else {
+        // Llama a postHotel para añadir un nuevo hotel
         const response = await postHotel(form);
         console.log('Hotel added successfully:', response.data);
         setMessage('Hotel added successfully');
