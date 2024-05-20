@@ -77,11 +77,10 @@ export const HotelManagement = () => {
     try {
       setLoading(true);
       if (editMode) {
-        const response = await putHotel(editHotelId, form); // Llama a putHotel en modo edición
+        const response = await putHotel(editHotelId, form);
         console.log('Hotel updated successfully:', response.data);
         setMessage('Hotel updated successfully');
       } else {
-        // Llama a postHotel para añadir un nuevo hotel
         const response = await postHotel(form);
         console.log('Hotel added successfully:', response.data);
         setMessage('Hotel added successfully');
@@ -101,12 +100,13 @@ export const HotelManagement = () => {
     } catch (error) {
       console.error('Error adding/updating hotel:', error);
       setMessage('Error adding/updating hotel');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleEdit = (hotel) => {
-    setForm({ ...hotel }); // Establece los valores del formulario con los datos del hotel
+    setForm({ ...hotel });
     setEditMode(true);
     setEditHotelId(hotel._id);
   };
@@ -115,14 +115,14 @@ export const HotelManagement = () => {
     try {
       setLoading(true);
       const response = await deleteHotel(hotelId);
-      console.log('Hotel eliminado exitosamente:', response.data);
-      setMessage('Hotel eliminado exitosamente');
+      console.log('Hotel eliminado exitosamente:', response);
       fetchHotels();
     } catch (error) {
       console.error('Error al eliminar hotel:', error);
       setMessage('Error al eliminar hotel');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

@@ -87,7 +87,6 @@ export const putHotel = async (hotelId, hotelData) => {
     try {
         return await api.put(`/updateHotel/${hotelId}`, hotelData);
     } catch (error) {
-        // Manejo de errores
         console.error('Error updating hotel:', error);
         return {
             error: true,
@@ -98,13 +97,13 @@ export const putHotel = async (hotelId, hotelData) => {
 
 export const deleteHotel = async (hotelId) => {
     try {
-        return await api.delete(`/deleteHotel`, hotelId);
+        const response = await api.delete(`/deleteHotel/${hotelId}`);
+        return response.data;
     } catch (e) {
         console.error('Error in deleteHotel:', e);
         throw e;
     }
 };
-
 
 const checkResponseStatus = (e) => {
     const responseStatus = e?.response?.status

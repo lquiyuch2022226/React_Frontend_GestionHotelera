@@ -79,7 +79,6 @@ form button {
 
 form button.submit-button {
     background-color: #00bfff;
-    /* Celeste */
     color: #fff;
     width: 100%;
     margin-top: 10px;
@@ -87,7 +86,6 @@ form button.submit-button {
 
 form button.submit-button:hover {
     background-color: #009acd;
-    /* Tonalidad más oscura de celeste */
 }
 
 form button.reset-button {
@@ -133,7 +131,6 @@ ul li button {
 
 ul li button.edit-button {
     background-color: #ffc107;
-    /* Amarillo/Naranja */
 }
 
 ul li button.edit-button:hover {
@@ -142,7 +139,6 @@ ul li button.edit-button:hover {
 
 ul li button.delete-button {
     background-color: #dc3545;
-    /* Rojo */
 }
 
 ul li button.delete-button:hover {
