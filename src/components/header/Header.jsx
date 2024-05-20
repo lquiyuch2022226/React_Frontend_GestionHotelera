@@ -8,11 +8,26 @@ import { useUserDetails } from "../../shared/hooks";
 import { useNavigate } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Link, NavLink } from "react-router-dom";
+import logo from '../../assets/img/kha.jpeg'
 
 export const Header = () => {
     const [menuOpened, setMenuOpened] = useState(false);
     const headerColor = useHeaderColor();
     const { isLogged, logout } = useUserDetails()
+
+    const NavLogo = () => {
+        return (
+            <div className="nav-logo-container">
+                <img
+                    className="nav-logo"
+                    src={logo}
+                    alt="Logo.svg"
+                    width='100%'
+                    height='100%'
+                />
+            </div>
+        )
+    }
 
     const navigate = useNavigate()
 
@@ -37,7 +52,8 @@ export const Header = () => {
             <div className="flexCenter innerWidth paddings h-container">
                 {/* logo */}
                 <Link to="/">
-                    <img src="../../assets/img/kha.jpeg" alt="logo" width={100} />
+                    <NavLogo />
+                    <img src="../../assets/img/hero-image.png" width={100} />
                 </Link>
 
                 {/* menu */}
@@ -78,5 +94,3 @@ export const Header = () => {
         </section>
     );
 };
-
-export default Header;

@@ -16,6 +16,10 @@
   .hero-left {
     gap: 3rem;
   }
+
+  .hero-right{
+    padding-left: 3vw;
+  }
   .hero-title {
     position: relative;
     z-index: 1;
@@ -31,7 +35,7 @@
     background: var(--orange-gradient);
     border-radius: 999px;
     position: absolute;
-    right: 28%;
+    right: 60%;
     top: -10%;
     z-index: -1;
   }

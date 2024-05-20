@@ -21,6 +21,8 @@ apiClient.interceptors.request.use(
     }
 )
 
+
+/* -----------------USUARIOS--------------------------*/
 export const login = async (data) => {
     try{
         return await apiClient.post('/auth/login', data)
@@ -78,6 +80,19 @@ export const userPut = async (data) => {
             error: true,
             e
         };
+    }
+}
+
+/* ----------------HOTELES-----------------------*/
+export const getHotels = async () =>{
+    try{
+        return await apiClient.get(`/hotel`) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
     }
 }
 
