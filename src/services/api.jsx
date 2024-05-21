@@ -98,3 +98,13 @@ export const getHotels = async () => {
         e
     }
 }
+
+
+export const postReservation = async (dates) => {
+    try {
+        return await apiClient.post(`/reservation/addRes`, dates);
+    } catch (e) {
+        error: true,
+        e
+    }
+}
