@@ -70,6 +70,30 @@ export const getUserById = async (id) =>{
     }
 }
 
+export const roomsGet = async () =>{
+    try{
+        return await apiClient.get(`/room`) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
+export const usuariosGet = async () =>{
+    try{
+        return await apiClient.get(`/user`) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
 export const userPut = async (data) => {
     try {
         console.log(data,'data en api');

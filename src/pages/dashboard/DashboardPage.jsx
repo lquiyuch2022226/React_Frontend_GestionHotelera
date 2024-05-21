@@ -5,7 +5,7 @@ import { Navbar } from "../../components/navbars/NavBar";
 import { Content } from "../../components/dashboard/Content";
 import { useUserDetails } from "../../shared/hooks";
 import { Header } from '../../components/header/Header'
-import { Hero } from '../../components/hero/Hero'
+import { Hero } from '../../components/hero/Hero';
 
 import "./dashboardPage.css";
 
@@ -18,12 +18,10 @@ export const DashboardPage = () => {
 
   return (
     <div className="dashboard-container">
-      <Navbar />
       <Content />
-      <div>
+      <div className="Marco">
         <Header />
       </div>
-
     </div>
   );
 };
