@@ -1,65 +1,28 @@
-/* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
-import logo from '../../assets/img/kha.jpeg'
-import { useUserDetails } from "../../shared/hooks";
-
-const NavLogo = () => {
-    return(
-        <div className="nav-logo-container">
-            <img 
-                className="nav-logo"
-                src={logo} 
-                alt="Logo.svg"
-                width='100%'
-                height='100%'
-            />
-        </div>
-    )
-}
-
-const NavButton = ({text, onClickHandler}) => {
-    return(
-        <span className="nav-button" onClick={onClickHandler}>
-            {text}
-        </span>
-    )
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
-    const { isLogged, logout } = useUserDetails()
+  const handleLogout = () => {
+    localStorage.removeItem('profile');
+    window.location.href = '/';
+  };
 
-    const navigate = useNavigate()
-
-    const handleNavigateToHomePage = () => {
-        navigate('/')
-    }
-
-    const handleNavigateToAuthPage = () => {
-        navigate('/auth')
-    }
-
-    const handleNavigateToSettingPage = () => {
-        navigate('/settings')
-    }
-
-    const handleLogout = () => {
-        logout()
-    }
-
-    return(
-        <div className="nav-container">
-            <NavLogo/>
-            <div className="nav-buttons-container">
-                {!isLogged ? (
-                    <NavButton text='Login' onClickHandler={handleNavigateToAuthPage}/>
-                ) : (
-                    <div>
-                        <NavButton text='Home' onClickHandler={handleNavigateToHomePage}/>
-                        <NavButton text='My Account' onClickHandler={handleNavigateToSettingPage}/>
-                        <NavButton text='Logout' onClickHandler={handleLogout}/>
-                    </div>
-                )}
-            </div>
-        </div>
-    )
-}
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/hotels">Hotel Management</Link>
+        </li>
+        <li>
+          <Link to="/stats">Statistics</Link>
+        </li>
+        <li>
+          <button onClick={handleLogout}>Logout</button>
+        </li>
+      </ul>
+    </nav>
+  );
+};

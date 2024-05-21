@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
-import { Content } from "../../components/dashboard/Content";
+import { NavbarAdHotel } from "../adminHotelPage/ComponentsAdHotel/NavbarAdHotel/NavbarAdHotel";
+import { ContentAdHotel } from "./ContentAdHotel";
 import { useUserDetails } from "../../shared/hooks";
 
 import './adminHotelPage.css'
@@ -14,7 +15,10 @@ export const AdminHotelPage = () => {
 
   return (
     <div className="dashboard-container">
-      <h1>ADMIN DE UN HOTEL PAGEEEEEEE</h1>
+      <NavbarAdHotel />
+      <ContentAdHotel/>
+      <div>
+      </div>
     </div>
   );
 };

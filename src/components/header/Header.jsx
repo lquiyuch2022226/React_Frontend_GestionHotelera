@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import "./Header.css";
-//import { BiMenuAltRight } from "react-icons/bi";
 import { getMenuStyles } from "../../utils/common.js";
 import { useHeaderColor } from "../../shared/hooks";
 import { useUserDetails } from "../../shared/hooks";
 import { useNavigate } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoImage from '../../assets/img/kha.png';
 
 export const Header = () => {
@@ -36,12 +35,10 @@ export const Header = () => {
     return (
         <section className="h-wrapper" style={{ background: headerColor }}>
             <div className="flexCenter innerWidth paddings h-container">
-                {/* logo */}
                 <Link to="/">
                     <img src={logoImage} width={100} />
                 </Link>
 
-                {/* menu */}
                 <OutsideClickHandler
                     onOutsideClick={() => {
                         setMenuOpened(false);
