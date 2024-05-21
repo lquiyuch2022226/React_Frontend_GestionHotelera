@@ -17,8 +17,6 @@ export const Hero = () => {
         getHotels();
     }, []);
 
-    console.log(allHotels, HowManyHotels);
-
     return (
         <section className="hero-wrapper">
             <div className="paddings innerWidth flexCenter hero-container">

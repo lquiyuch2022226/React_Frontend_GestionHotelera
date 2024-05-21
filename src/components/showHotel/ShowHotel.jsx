@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import "./showHotel.css";
 
-export const ShowHotel = ({ id }) => {
-
+export const ShowHotel = ({ hotel }) => {
     const [desc, setDesc] = useState("");
     const [autor, setAutor] = useState("");
 
@@ -16,38 +15,22 @@ export const ShowHotel = ({ id }) => {
         <div className='all_container'>
             <div className='container'>
                 <h1 className='title'>
-                    <b>{id.nameHotel}</b>
+                    <b>{hotel.hotel.nameHotel}</b>
                 </h1>
                 <div className='post'>
                     <div className='imgContainer'>
-                        <img src={id.nameHotel} alt="" className='image' />
+                        <img src={hotel.hotel.imageUrl} alt="Imagen aca" className='image' />
                     </div>
 
                     <div className='textContainer'>
                         <p className='postTitle'>
-                            {id.nameHotel}
+                            {hotel.hotel.category}
                         </p>
-                        <h1 className='postDesc'>{id.nameHotel}</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div className='container_2'>
-                <div className='input_Title'>
-                    <h4 className='fooder_title'>Comentarios</h4>
-                    <div className='write'>
-                        <div className="input-group">
-                            <input required="true" type="text" value={autor} className="input" onChange={(e) => setAutor(e.target.value)} />
-                            <label className="user-label">Nombre Completo</label>
-                        </div>
-                        <div className="input-group">
-                            <textarea required="true" type="text" value={desc} className="input" onChange={(e) => setDesc(e.target.value)} />
-                            <label className="user-label">Escribe un comentario</label>
-                        </div>
+                        <h1 className='postDesc'>{hotel.hotel.address}</h1>
                     </div>
                     <div className='espacio'>
-                        <button className='button' onClick={handleSubmit}>
-                            <span>Comentar</span>
+                        <button className='buttonReserva' onClick={handleSubmit}>
+                            <span>Hacer una reservación</span>
                         </button>
                     </div>
                 </div>

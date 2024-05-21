@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchDates } from '../SearchDates/SearchDates'
+import { SearchDates } from '../SearchDates/SearchDates';
 import { useHotelsGet } from '../../shared/hooks';
 import { ShowHotel } from '../showHotel/ShowHotel';
 import { useHotel } from '../../shared/hooks';
@@ -13,36 +13,36 @@ export const Hotel = () => {
 
     useEffect(() => {
         getHotels();
-        console.log('All Hotels:', allHotels); // Verificar los datos cargados
     }, []);
 
     const handleOneHotelClick = async (id) => {
-        const hotel = await getHotel(id);
-        setSelectedId(hotel);
-    }
-
-    if (selectedId) {
-        return <ShowHotel id={selectedId} />
-    }
+        try {
+            const hotel = await getHotel(id);
+            console.log('Selected Hotel:', hotel);
+            setSelectedId(hotel);
+        } catch (error) {
+            console.error('Error fetching hotel details:', error);
+        }
+    };
 
     const handleSearch = (searchParams) => {
-        console.log(searchParams, 'searchParams')
-        console.log('handleSearch is a function:', typeof handleSearch === 'function'); // Verificar handleSearch
         console.log('searchParams:', searchParams);
 
         const filteredHotels = allHotels.filter(hotel => {
-            console.log(hotel)
             return hotel.address && searchParams.location &&
-                hotel.address.toLowerCase().includes(searchParams.location.toLowerCase())
+                hotel.address.toLowerCase().includes(searchParams.location.toLowerCase());
         });
         setHotels(filteredHotels);
-        console.log(filteredHotels, 'hoteles filtrados')
-
+        console.log('Filtered Hotels:', filteredHotels);
     };
+
+    if (selectedId && hotelDetails) {
+        console.log('Rendering ShowHotel with ID:', selectedId);
+        return <ShowHotel hotel={hotelDetails} />;
+    }
 
     return (
         <div>
-            {console.log('Passing handleSearch as onSearch to SearchDates')}
             <SearchDates onSearch={handleSearch} />
             <div style={{ padding: '20px' }}>
                 {hotels.length > 0 && (
@@ -55,7 +55,7 @@ export const Hotel = () => {
                                     <div className="hotel-details">
                                         <p>{hotel.numStars} stars</p>
                                         <p>{hotel.category}</p>
-                                        <p>{hotel.address} reviews</p>
+                                        <p>{hotel.address}</p>
                                     </div>
                                 </div>
                                 <div className="price-box">
@@ -70,5 +70,3 @@ export const Hotel = () => {
         </div>
     );
 };
-
-
