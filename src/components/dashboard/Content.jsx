@@ -3,8 +3,9 @@ import { Settings } from "../settings/Settings";
 import { Header } from "../header/Header";
 import { Hero } from "..//hero/Hero";
 import {showHotels} from "../hotels/showHotels.jsx"
+import { reservForm } from "../reservations/addReservation.jsx"
 
-export const Content = () => {
+/*export const Content = () => {
     return (
         <div className="content-container">
             <Routes>
@@ -14,4 +15,16 @@ export const Content = () => {
             </Routes>
         </div>
     )
-}   
+}   */
+
+export const Content = () => {
+    return (
+        <div>
+            <div>
+                <Routes>
+                    <Route path='reserva' element={reservForm}/>
+                </Routes>
+            </div>
+        </div>
+    )
+}

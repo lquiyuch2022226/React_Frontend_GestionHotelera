@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAddReservation } from '../../shared/hooks/useAddReservation.jsx';
 
-const reservForm = () => {
+export const reservForm = () => {
     const { reserv } = useAddReservation();
     const [dateStart, setDateStart] = useState('');
     const [dateFinish, setDateFinish] = useState('');
