@@ -133,7 +133,7 @@
     margin-bottom: 10px;
     padding: 10px;
     font-size: 18px;
-    background-color: #0b336b;
+    background-color: #4b0707;
     color: white;
     border: none;
     cursor: pointer;
@@ -202,3 +202,4 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+

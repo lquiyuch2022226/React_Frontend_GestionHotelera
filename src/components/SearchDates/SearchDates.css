@@ -1,7 +1,83 @@
-.c-container{
+.c-container {
     justify-content: space-around;
     gap: 1rem;
 }
-.c-container>img{
+
+.c-container>img {
     width: 9rem;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(170, 11, 11, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-group label {
+    font-size: 12px;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+}
+
+.input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: white;
+    width: 200px;
+}
+
+.buttonSearch {
+    width: 300px;
+    padding: 0.8em 1.8em;
+    border: 2px solid #4b0707;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: .3s;
+    z-index: 1;
+    font-family: inherit;
+    color: white;
+}
+
+.buttonSearch::before {
+    content: '';
+    width: 0;
+    height: 300%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: white;
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.buttonSearch:hover::before {
+    width: 105%;
+}
+
+.buttonSearch:hover {
+    color: black;
 }

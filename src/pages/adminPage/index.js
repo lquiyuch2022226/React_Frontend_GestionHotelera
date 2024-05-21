@@ -1,3 +1,1 @@
-export { HotelManagement }
-from './AdminPage';
-export * from './AdminPage'
+export { AdminPage } from './AdminPage';

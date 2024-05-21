@@ -4,9 +4,14 @@ import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import heroImage from '../../../../assets/img/hotel1.jpg';
 import { useHotelsGet } from '../../../../shared/hooks';
+import { useRoomssGet } from '../../../../shared/hooks';
+import { useUsersGet } from '../../../../shared/hooks';
+//import SearchBar from "../SearchBar/SearchBar";
 
 export const HeroAdHotel = () => {
     const { getHotels, allHotels, HowManyHotels, isFetching } = useHotelsGet();
+    const { getUsers, allUsers, HowManyUsers } = useUsersGet();
+    const { getRooms, allRooms, HowManyRooms } = useRoomssGet();
 
     useEffect(() => {
         getHotels();
@@ -17,7 +22,6 @@ export const HeroAdHotel = () => {
     return (
         <section className="hero-wrapper">
             <div className="paddings innerWidth flexCenter hero-container">
-                {/* left side */}
                 <div className="flexColStart hero-left">
                     <div className="hero-title">
                         <div className="orange-circle" />
@@ -46,21 +50,21 @@ export const HeroAdHotel = () => {
                             <span>
                                 <CountUp start={0} end={HowManyHotels || 0} duration={4} /> <span>+</span>
                             </span>
-                            <span className="secondaryText">Hotels</span>
+                            <span className="secondaryText">Registered Hotels</span>
                         </div>
 
                         <div className="flexColCenter stat">
                             <span>
-                                <CountUp start={1950} end={2000} duration={4} /> <span>+</span>
+                                <CountUp start={50} end={HowManyRooms || 0} duration={4} /> <span>+</span>
                             </span>
-                            <span className="secondaryText">Happy Customer</span>
+                            <span className="secondaryText">Registered Rooms</span>
                         </div>
 
                         <div className="flexColCenter stat">
                             <span>
-                                <CountUp end={28} /> <span>+</span>
+                                <CountUp start={100} end={HowManyUsers || 0} duration={4}/> <span>+</span>
                             </span>
-                            <span className="secondaryText">Awards Winning</span>
+                            <span className="secondaryText">Registered users</span>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Settings } from "../settings/Settings";
-import { Hotel } from "../../hotel/Hotel";
+import { Hotel } from "../Hotel/Hotel";
 import { Hero } from "../hero/Hero";
 import { SearchDates } from '../SearchDates/SearchDates'
 
