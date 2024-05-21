@@ -120,6 +120,18 @@ export const getHotels = async () =>{
     }
 }
 
+export const hotelById = async (id) =>{
+    try{
+        return await apiClient.get(`/hotel/one/${id}`) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
 const checkResponseStatus = (e) => {
     const responseStatus = e?.response?.status
 

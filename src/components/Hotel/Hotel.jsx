@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { SearchDates } from '../SearchDates/SearchDates'
 import { useHotelsGet } from '../../shared/hooks';
+import { ShowHotel } from '../showHotel/ShowHotel';
+import { useHotel } from '../../shared/hooks';
 import './Hotel.css';
 
 export const Hotel = () => {
     const [hotels, setHotels] = useState([]);
     const { getHotels, allHotels } = useHotelsGet();
+    const { hotelDetails, getHotel } = useHotel();
+    const [selectedId, setSelectedId] = useState(null);
 
     useEffect(() => {
         getHotels();
         console.log('All Hotels:', allHotels); // Verificar los datos cargados
     }, []);
 
-    const handleCommentClick = async (id) => {
-        const publication = await getPublication(id);
-        setSelectedId(publication);
-        getComments(id);
+    const handleOneHotelClick = async (id) => {
+        const hotel = await getHotel(id);
+        setSelectedId(hotel);
+    }
+
+    if (selectedId) {
+        return <ShowHotel id={selectedId} />
     }
 
     const handleSearch = (searchParams) => {
@@ -53,7 +60,7 @@ export const Hotel = () => {
                                 </div>
                                 <div className="price-box">
                                     <p className="price">${hotel.numberOfReservations}</p>
-                                    <button className="Button" onClick={() => handleCommentClick(publicacion._id)}>View More</button>
+                                    <button className="Button" onClick={() => handleOneHotelClick(hotel._id)}>View More</button>
                                 </div>
                             </div>
                         ))}
