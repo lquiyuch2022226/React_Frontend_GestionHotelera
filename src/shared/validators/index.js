@@ -1,4 +1,5 @@
 export * from './validateEmail'
 export * from './validatePassword'
 export * from './validatePasswordConfir'
-export * from './validateUsername'
+export * from './validateName'
+export * from './validateLastName'

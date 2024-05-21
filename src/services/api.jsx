@@ -26,6 +26,8 @@ apiClient.interceptors.request.use(
     }
 )
 
+
+/* -----------------USUARIOS--------------------------*/
 export const login = async (data) => {
     try {
         return await apiClient.post('/auth/login', data)
@@ -72,6 +74,7 @@ export const getHotel = async () => {
     }
 }
 
+
 export const postHotel = async (hotelData) => {
     try {
         return await api.post('/addHotel', hotelData);
@@ -104,6 +107,44 @@ export const deleteHotel = async (hotelId) => {
         throw e;
     }
 };
+
+export const getUserById = async (id) =>{
+    try{
+        return await apiClient.get(`/user`, id) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
+
+export const userPut = async (data) => {
+    try {
+        console.log(data,'data en api');
+
+        return await apiClient.put(`/user/put`, data.data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        };
+    }
+}
+
+/* ----------------HOTELES-----------------------*/
+export const getHotels = async () =>{
+    try{
+        return await apiClient.get(`/hotel`) 
+    }catch(e){
+        return{
+            error: true,
+            e
+            
+        }
+    }
+}
 
 const checkResponseStatus = (e) => {
     const responseStatus = e?.response?.status
