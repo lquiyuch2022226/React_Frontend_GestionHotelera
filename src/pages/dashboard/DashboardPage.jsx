@@ -6,7 +6,7 @@ import { Content } from "../../components/dashboard/Content";
 import { HotelManagement } from '../adminPage/AdminPage'; 
 import { useUserDetails } from "../../shared/hooks";
 import { Header } from '../../components/header/Header'
-import { Hero } from '../../components/hero/Hero'
+import { Hero } from '../../components/hero/Hero';
 
 
 import "./dashboardPage.css";
@@ -20,11 +20,9 @@ export const DashboardPage = () => {
 
   return (
     <div className="dashboard-container">
-      <h1>DASHBOARDPAGEEEEEEE</h1>
       <HotelManagement /> {HotelManagement}
-      <Navbar />
       <Content />
-      <div>
+      <div className="Marco">
         <Header />
       </div>
     </div>
