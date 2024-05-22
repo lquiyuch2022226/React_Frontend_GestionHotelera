@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+import "../pages/auth/register.css";
 import { useState } from "react";
-import { Logo } from "./Logo";
+import logo from "../assets/img/kha.jpeg";
 import { Input } from "./Input";
+import { Link } from "react-router-dom";
 import {
   emailValidationMessage,
   passwordValidationMessage,
@@ -12,7 +14,7 @@ import {
   validateLastName,
   validateLastNameMessage,
   validateName,
-  validateNameMessage
+  validateNameMessage,
 } from "../shared/validators";
 import { useRegister } from "../shared/hooks";
 
@@ -90,7 +92,7 @@ export const Register = ({ switchAuthHandler }) => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    console.log(formState)
+    console.log(formState);
     register(
       formState.email.value,
       formState.password.value,
@@ -107,66 +109,132 @@ export const Register = ({ switchAuthHandler }) => {
     !formState.lastName.isValid;
 
   return (
-    <div className="register-container">
-      <Logo text={"Register to Kinal Cast"} />
-      <form className="auth-form">
-        <Input
-          field="email"
-          label="Email"
-          value={formState.email.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.email.showError}
-          validationMessage={emailValidationMessage}
-        />
-        <Input
-          field="password"
-          label="Password"
-          value={formState.password.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.password.showError}
-          validationMessage={passwordValidationMessage}
-        />
-        <Input
-          field="passwordConfir"
-          label="Password Confirmation"
-          value={formState.passwordConfir.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.passwordConfir.showError}
-          validationMessage={passwordConfirmationMessage}
-        />
-        <Input
-          field="name"
-          label="Name"
-          value={formState.name.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.name.showError}
-          validationMessage={validateNameMessage}
-        />
-        <Input
-          field="lastName"
-          label="LastName"
-          value={formState.lastName.value}
-          onChangeHandler={handleInputValueChange}
-          type="text"
-          onBlurHandler={handleInputValidationOnBlur}
-          showErrorMessage={formState.lastName.showError}
-          validationMessage={validateLastNameMessage}
-        />
-        <button onClick={handleRegister} disabled={isSubmitButtonDisabled}>
-          Register
-        </button>
-      </form>
-      <span onClick={switchAuthHandler} className="auth-form-switch-label">
-        ¿Ya tienes una cuenta? ¡Inicia sesión acá...!
-      </span>
+    <div className="page-container">
+      <div className="page-container__border">
+        <div className="page-container__half page-container__half--left"></div>
+        <div className="page-container__half page-container__half--right">
+          <div className="page-container__content">
+            <div className="page-container__logo">
+              <img className="page-container__logo-img" src={logo} alt="logo" />
+            </div>
+            <h2 className="page-container__title">REGISTER</h2>
+            <div className="page-container__section">
+              <h3 className="page-container__subtitle">Datos Personales</h3>
+              <div className="page-container__inputs-group">
+                <CustomInput
+                  onChange={(e) => {
+                    handleInputValueChange(e.target.value, "name");
+                  }}
+                  onBlur={handleInputValidationOnBlur}
+                  value={formState.name.value}
+                  className="page-container__input"
+                  showErrorMessage={formState.name.showError}
+                  validationMessage={validateNameMessage}
+                  placeholder="Nombre"
+                  type="text"
+                />
+                <CustomInput
+                  onChange={(e) => {
+                    handleInputValueChange(e.target.value, "lastName");
+                  }}
+                  onBlur={handleInputValidationOnBlur}
+                  value={formState.lastName.value}
+                  className="page-container__input"
+                  showErrorMessage={formState.lastName.showError}
+                  validationMessage={validateLastNameMessage}
+                  placeholder="Apellido"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div className="page-container__section">
+              <h3 className="page-container__subtitle">Datos de Cuenta</h3>
+              <CustomInput
+                onChange={(e) => {
+                  handleInputValueChange(e.target.value, "email");
+                }}
+                onBlur={handleInputValidationOnBlur}
+                value={formState.email.value}
+                className="page-container__input--full"
+                showErrorMessage={formState.email.showError}
+                validationMessage={emailValidationMessage}
+                placeholder="Email"
+                type="text"
+              />
+              <div className="page-container__inputs-group">
+                <CustomInput
+                  onChange={(e) => {
+                    handleInputValueChange(e.target.value, "password");
+                  }}
+                  onBlur={handleInputValidationOnBlur}
+                  value={formState.password.value}
+                  className="page-container__input"
+                  showErrorMessage={formState.password.showError}
+                  validationMessage={passwordValidationMessage}
+                  placeholder="Password"
+                  type="password"
+                />
+                <CustomInput
+                  onChange={(e) => {
+                    handleInputValueChange(e.target.value, "passwordConfir");
+                  }}
+                  onBlur={handleInputValidationOnBlur}
+                  value={formState.passwordConfir.value}
+                  className="page-container__input"
+                  showErrorMessage={formState.passwordConfir.showError}
+                  validationMessage={passwordConfirmationMessage}
+                  placeholder="Password Confirm"
+                  type="password"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="page-container__actions">
+            <button className="page-container__button">Enviar</button>
+            <a
+              className="page-container__link"
+              to={"/auth"}
+              onClick={(e) => {
+                e.preventDefault();
+                switchAuthHandler();
+              }}
+            >
+              Si ya tienes cuenta da clic aqui...
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+
+function CustomInput({
+  type,
+  onChange,
+  onBlur,
+  value,
+  placeholder,
+  className,
+  showErrorMessage,
+  validationMessage,
+}) {
+  return (
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
+      <input
+        type={type}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        placeholder={placeholder}
+        className={className}
+      />
+      <span className="auth-form-validations-message">
+        {showErrorMessage && validationMessage}
+      </span>
+    </div>
+  );
+}

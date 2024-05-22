@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
+import "../pages/auth/register.css";
 import { useState } from "react";
-import { Logo } from "./Logo";
+import logo from "../assets/img/kha.jpeg";
 import { Input } from "./Input";
 import {
   emailValidationMessage,
   passwordValidationMessage,
   validateEmail,
+  validateNameMessage,
   validatePassword,
 } from "../shared/validators";
 import { useLogin } from "../shared/hooks";
 
 export const Login = ({ switchAuthHandler }) => {
-  const {login, isLoading} = useLogin();
+  const { login, isLoading } = useLogin();
 
   const [formState, setFormState] = useState({
     email: {
@@ -48,13 +50,13 @@ export const Login = ({ switchAuthHandler }) => {
       default:
         break;
     }
-    setFormState((prevState) =>({
-        ...prevState,
-        [field]:{
-            ...prevState[field],
-            isValid,
-            showError: !isValid
-        }
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: {
+        ...prevState[field],
+        isValid,
+        showError: !isValid
+      }
     }))
   };
 
@@ -66,36 +68,79 @@ export const Login = ({ switchAuthHandler }) => {
 
   const isSubmitButtonDisabled = isLoading || !formState.password.isValid || !formState.email.isValid
   return (
-    <div className="login-container">
-        <Logo text={'Login'}/>
-        <form className="auth-form">
-            <Input
-                field='email'
-                label='Email'
-                value={formState.email.value}
-                onChangeHandler={handleInputValueChange}
-                type='text'
-                onBlurHandler={handleInputValidationOnBlur}
-                showErrorMessage={formState.email.showError}
-                validationMessage={emailValidationMessage}
-            />
-            <Input
-                field='password'
-                label='Password'
-                value={formState.password.value}
-                onChangeHandler={handleInputValueChange}
-                type='password'
-                onBlurHandler={handleInputValidationOnBlur}
-                showErrorMessage={formState.password.showError}
-                validationMessage={passwordValidationMessage}
-            />
-            <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
-                Log in
-            </button>
-        </form>
-        <span onClick={switchAuthHandler} className="auth-form-switch-label">
-            ¿Aún no tienes una cuenta? ¡Registrate...!
-        </span>
+    <div className="page-container">
+      <div className="page-container__border">
+        <div className="page-container__half page-container__half--left"></div>
+        <div className="page-container__half page-container__half--right">
+          <div className="page-container__content">
+            <div className="page-container__logo">
+              <img className="page-container__logo-img" src={logo} alt="logo" />
+            </div>
+            <h2 className="page-container__title">LOGIN</h2>
+            <div className="page-container__section">
+              <h3 className="page-container__subtitle">Datos de Usuario</h3>
+              <div className="page-container__inputs-group">
+                <CustomInput 
+                  className="page-container__input"
+                  placeholder="Email"
+                  type="text"
+                />
+              </div>
+              <div>
+              <CustomInput 
+                className="page-container__input"
+                placeholder="Password"
+                type="password"
+              />
+              </div>
+            </div>
+          </div>
+          <div className="page-container__actions">
+            <button className="page-container__button">Enviar</button>
+            <a
+              className="page-container__link"
+              to={"/auth"}
+              onClick={(e) => {
+                e.preventDefault();
+                switchAuthHandler();
+              }}
+            >
+              Si todavia no tiene una cuenta de clic aqui...
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+
+function CustomInput({
+  type,
+  onChange,
+  onBlur,
+  value,
+  placeholder,
+  className,
+  showErrorMessage,
+  validationMessage,
+}) {
+  return (
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
+      <input
+        type={type}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        placeholder={placeholder}
+        className={className}
+      />
+      <span className="auth-form-validations-message">
+        {showErrorMessage && validationMessage}
+      </span>
+    </div>
+  );
+}

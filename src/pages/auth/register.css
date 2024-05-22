@@ -1,0 +1,120 @@
+.page-container {
+  height: 100vh;
+  padding: 80px; /* p-20 -> 20 * 4 = 80px */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.background {
+  background: url("../../assets/img/fondo-2.jpeg") center/cover no-repeat;
+}
+
+.page-container__border {
+  max-width: 850px;
+  display: flex;
+  height: 100%;
+  /* gap: 8px; gap-2 -> 2 * 4 = 8px */
+  border: 1px solid #000; /* Ajustar según sea necesario */
+  width: 100%;
+}
+
+.page-container__half {
+  padding: 12px; /* p-3 -> 3 * 4 = 12px */
+  width: 50%;
+}
+
+.page-container__half--left {
+  background-color: #661010; /* bg-red-700 */
+}
+
+.page-container__half--right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.page-container__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* gap-4 -> 4 * 4 = 16px */
+  width: 100%;
+  justify-content: space-between;
+}
+
+.page-container__logo {
+  padding: 0 20px; /* px-5 -> 5 * 4 = 20px */
+  display: flex;
+  justify-content: center;
+}
+
+.page-container__logo-img {
+  width: 100%;
+  max-width: 330px;
+}
+
+.page-container__title {
+  font-size: 1.875rem; /* text-3xl */
+  text-align: center;
+}
+
+.page-container__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* gap-2 -> 2 * 4 = 8px */
+}
+
+.page-container__subtitle {
+  font-size: 1.125rem; /* Ajustar según sea necesario */
+}
+
+.page-container__inputs-group {
+  display: flex;
+  gap: 12px; /* gap-3 -> 3 * 4 = 12px */
+}
+
+.page-container__input,
+.page-container__input--full {
+  border: 1px solid #000; /* Ajustar según sea necesario */
+  padding: 8px 12px; /* px-3 py-2 -> 3 * 4 = 12px (padding horizontal), 2 * 4 = 8px (padding vertical) */
+}
+
+.page-container__input {
+  width: 100%;
+}
+
+.page-container__input input {
+  width: 50%;
+}
+
+.page-container__input--full {
+  width: 100%;
+}
+
+.page-container__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* gap-2 -> 2 * 4 = 8px */
+}
+
+.page-container__button {
+  background-color: #661010; /* bg-red-700 */
+  color: #fff;
+  width: 100%;
+  padding: 8px 12px; /* px-3 py-2 -> 3 * 4 = 12px (padding horizontal), 2 * 4 = 8px (padding vertical) */
+  border: none;
+  cursor: pointer;
+}
+
+.page-container__link {
+  color: #2563eb; /* text-blue-600 */
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.page-container__link:hover {
+  text-decoration: underline;
+}
