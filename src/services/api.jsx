@@ -48,7 +48,7 @@ export const register = async (data) => {
 export const getUserEmail = async (email) =>{
     try{
         console.log(email, email)
-        return await apiClient.get(`/user/email/${email}`)
+        return await apiClient.get(`/user/user/${email}`)
     }catch(e){
         return{
             error: true,
@@ -60,7 +60,7 @@ export const getUserEmail = async (email) =>{
 
 export const getUserById = async (id) =>{
     try{
-        return await apiClient.get(`/user`, id) 
+        return await apiClient.get(`/user/`, id) 
     }catch(e){
         return{
             error: true,
@@ -99,7 +99,7 @@ export const roomsGetOnlyHotel = async (idHotel) => {
 
 export const usuariosGet = async () =>{
     try{
-        return await apiClient.get(`/user`) 
+        return await apiClient.get(`/user/`) 
     }catch(e){
         return{
             error: true,
@@ -125,7 +125,7 @@ export const userPut = async (data) => {
 /* ----------------HOTELES-----------------------*/
 export const getHotels = async () =>{
     try{
-        return await apiClient.get(`/hotel`) 
+        return await apiClient.get(`/hotel`)
     }catch(e){
         return{
             error: true,
@@ -152,5 +152,25 @@ const checkResponseStatus = (e) => {
 
     if(responseStatus){
         (responseStatus === 401 || responseStatus === 403) && logout
+    }
+}
+
+
+export const postReservation = async (dates) => {
+    
+
+    try {
+        return await apiClient.post(`/reservation/postRes/`, dates);
+    } catch (e) {
+        error: true,
+        e
+    }
+}
+
+export const getIdUser = async(email) => {
+    try {
+        return await apiClient.get('/user/'+email)
+    } catch (error) {
+        
     }
 }

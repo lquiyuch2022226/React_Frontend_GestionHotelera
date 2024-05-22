@@ -1,7 +1,7 @@
 /* eslint-disable no-extra-boolean-cast */
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { getHotels as getHotelsRequest } from "../../services";
+import { getHotels as getHotelsRequest } from "../../services/api.jsx";
 
 export const useHotelsGet = () => {
     const [hotelsData, setHotelsData] = useState({ hotels: [], total: 0 });
@@ -23,9 +23,13 @@ export const useHotelsGet = () => {
         }
     };
 
+    //console.log(getHotels)
+
     useEffect(() => {
         getHotels();
     }, []);
+
+    
 
     return {
         getHotels,

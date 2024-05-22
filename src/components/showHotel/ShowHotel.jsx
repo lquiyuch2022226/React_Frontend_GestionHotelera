@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 import { useRoomsByHotel } from "../../shared/hooks";
 import "./showHotel.css";
 
@@ -8,6 +8,10 @@ export const ShowHotel = ({ hotel }) => {
     const [desc, setDesc] = useState("");
     const [autor, setAutor] = useState("");
     const { roomsByHotelDetails, getRoomsByHotel } = useRoomsByHotel();
+
+    const navigate = useNavigate();
+
+
 
     const handleSubmitRooms = async () => {
         try {
@@ -19,8 +23,17 @@ export const ShowHotel = ({ hotel }) => {
     };
 
     const handleSubmit = () => {
-        // Handle other submit actions
+        const storedUserId = localStorage.getItem('IdUser');
+        console.log(storedUserId)
+
     };
+
+    const handleReservClick = () => {
+        
+        navigate('/reservation');
+        localStorage.setItem('idHab', item._id)
+    };
+
 
     return (
         <div>
@@ -44,11 +57,13 @@ export const ShowHotel = ({ hotel }) => {
                             <button className='buttonReserva' onClick={handleSubmitRooms}>
                                 <span>Ver Habitaciones</span>
                             </button>
-
-                            <button className='buttonReserva' onClick={handleSubmit}>
+                            
+                            <button className='buttonReserva' onClick={handleSubmit} >
                                 <span>Programar un evento</span>
                             </button>
+
                         </div>
+                        
                     </div>
                 </div>
             </div >
@@ -81,15 +96,21 @@ export const ShowHotel = ({ hotel }) => {
                                     <p className='desc'>{'Available Date: '}{item.availableDate}</p>
                                 </div>
                                 <div className='espacio'>
-                                    <button className='button' onClick={handleSubmit}>
+                                    <button className='button' onClick={handleReservClick}>
                                         <span>Reserve this room</span>
                                     </button>
+
                                 </div>
+                                
                             </div>
                         ))}
+
+
                     </div>
                 </div>
             </div>
+
+
         </div>
     );
 };

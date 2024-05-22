@@ -15,6 +15,11 @@ export const Hotel = () => {
         getHotels();
     }, []);
 
+    useEffect(() => {
+        console.log('Fetched Hotels:', allHotels);
+        setHotels(allHotels);
+    }, [allHotels]);
+
     const handleOneHotelClick = async (id) => {
         try {
             const hotel = await getHotel(id);
