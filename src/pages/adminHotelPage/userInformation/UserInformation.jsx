@@ -1,5 +1,6 @@
 import { HeaderAdHotel } from '../ComponentsAdHotel/header/HeaderAdHotel';
 import './UserInformation.css'
+import {SimpleTable} from '../../../components/SimpleTable/SimpleTable';
 
 export const UserInformation = () => {
 
@@ -9,12 +10,7 @@ export const UserInformation = () => {
       <HeaderAdHotel/>
     </div>
     <div>
-      <form className="form-container">
-        <h1>GET-USER</h1>
-        <h2>EMAIL</h2>
-        <input type="email" placeholder='email here'/>
-        <button className='button'>search</button>
-      </form>
+      <SimpleTable/>
     </div>
   </div>
   );
