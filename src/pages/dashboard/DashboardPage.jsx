@@ -17,11 +17,10 @@ export const DashboardPage = () => {
   useEffect(() => {
     (isLogged);
   }, []);
-
+//<HotelManagement /> {HotelManagement}  <Content />
   return (
     <div className="dashboard-container">
       <HotelManagement /> {HotelManagement}
-      <Content />
       <div className="Marco">
         <Header />
       </div>

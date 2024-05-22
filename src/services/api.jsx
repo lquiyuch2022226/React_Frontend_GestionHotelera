@@ -102,9 +102,9 @@ export const deleteHotel = async (hotelId) => {
     try {
         const response = await api.delete(`/deleteHotel/${hotelId}`);
         return response.data;
-    } catch (e) {
-        console.error('Error in deleteHotel:', e);
-        throw e;
+    } catch (error) {
+        console.error('Error en deleteHotel:', error);
+        throw error;
     }
 };
 

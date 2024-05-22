@@ -14,7 +14,7 @@ export const HotelManagement = () => {
     category: '',
     services: '',
     numStars: '',
-    idUserAdmin: '',
+    imageUrl: '',
     state: true,
   });
   const [stats, setStats] = useState({
@@ -86,13 +86,14 @@ export const HotelManagement = () => {
         setMessage('Hotel added successfully');
       }
       fetchHotels();
+      fetchStats(); // Actualizar estadísticas después de agregar o editar un hotel
       setForm({
         nameHotel: '',
         address: '',
         category: '',
         services: '',
         numStars: '',
-        idUserAdmin: '',
+        imageUrl: '',
         state: true,
       });
       setEditMode(false);
@@ -117,8 +118,8 @@ export const HotelManagement = () => {
       const response = await deleteHotel(hotelId);
       console.log('Hotel eliminado exitosamente:', response);
       fetchHotels();
+      fetchStats(); // Actualizar estadísticas después de eliminar un hotel
     } catch (error) {
-      console.error('Error al eliminar hotel:', error);
       setMessage('Error al eliminar hotel');
     } finally {
       setLoading(false);
@@ -172,12 +173,13 @@ export const HotelManagement = () => {
         />
         <input
           type="text"
-          name="idUserAdmin"
-          placeholder="ID del Administrador"
-          value={form.idUserAdmin}
+          name="imageUrl"
+          placeholder="URL Imagen"
+          value={form.imageUrl}
           onChange={handleChange}
           required
         />
+
         <button className="submit-button" type="submit" disabled={loading}>
           {editMode ? 'Actualizar Hotel' : 'Agregar Hotel'}
         </button>
@@ -188,7 +190,13 @@ export const HotelManagement = () => {
         <ul>
           {hotels && hotels.map((hotel) => (
             <li key={hotel._id}>
-              {hotel.nameHotel} - {hotel.address}
+              <div className="hotel-info">
+                <div><strong>Nombre del hotel:</strong> {hotel.nameHotel}</div>
+                <div><strong>Dirección:</strong> {hotel.address}</div>
+                <div><strong>Categoría:</strong> {hotel.category}</div>
+                <div><strong>Servicios:</strong> {hotel.services}</div>
+                <div><strong>Estrellas:</strong> {hotel.numStars}</div>
+              </div>
               <div className="button-container">
                 <button className="edit-button" onClick={() => handleEdit(hotel)}>Editar</button>
                 <button className="delete-button" onClick={() => handleDelete(hotel._id)}>Eliminar</button>
@@ -204,3 +212,4 @@ export const HotelManagement = () => {
     </div>
   );
 };
+
