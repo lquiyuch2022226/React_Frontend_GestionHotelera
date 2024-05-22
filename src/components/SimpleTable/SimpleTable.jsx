@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import { usuariosGet } from '../../services/api';
+import '../../pages/adminHotelPage/userInformation/UserInformation'
 
 export function SimpleTable() {
     const [data, setData] = useState([]);
