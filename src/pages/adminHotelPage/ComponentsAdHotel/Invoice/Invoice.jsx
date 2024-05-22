@@ -17,8 +17,8 @@ export const Invoice = () => {
           <form className="form-container">
             <h1>INVOICE</h1>
             <h2>EMAIL</h2>
-            <input type="email" placeholder="text here"/>
-            <button className="button" onClick={searchUser}>search</button>
+            <input type="email" placeholder="email here"/>
+            <button className="button" onClick={searchUser}>Generate</button>
           </form>
         </div>
       </div>
