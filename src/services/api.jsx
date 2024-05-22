@@ -82,6 +82,21 @@ export const roomsGet = async () =>{
     }
 }
 
+export const roomsGetOnlyHotel = async (idHotel) => {
+    try {
+        const response = await apiClient.get(`/room/getByHotel/${idHotel}`);
+        return {
+            error: false,
+            data: response.data
+        };
+    } catch (e) {
+        return {
+            error: true,
+            e
+        };
+    }
+};
+
 export const usuariosGet = async () =>{
     try{
         return await apiClient.get(`/user`) 

@@ -8,9 +8,6 @@ export const SearchDates = ({ onSearch }) => {
   const [until, setUntil] = useState('');
 
   const handleSearch = () => {
-    console.log('handleSearch is a function:', typeof handleSearch === 'function'); // Verificar handleSearch
-    console.log('onSearch is a function:', typeof onSearch === 'function'); // Verificar onSearch
-
     if (typeof onSearch === 'function') {
       onSearch({ location, since, until });
     } else {

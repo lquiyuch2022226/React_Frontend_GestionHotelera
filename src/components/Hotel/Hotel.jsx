@@ -18,7 +18,6 @@ export const Hotel = () => {
     const handleOneHotelClick = async (id) => {
         try {
             const hotel = await getHotel(id);
-            console.log('Selected Hotel:', hotel);
             setSelectedId(hotel);
         } catch (error) {
             console.error('Error fetching hotel details:', error);
@@ -26,14 +25,13 @@ export const Hotel = () => {
     };
 
     const handleSearch = (searchParams) => {
-        console.log('searchParams:', searchParams);
+
 
         const filteredHotels = allHotels.filter(hotel => {
             return hotel.address && searchParams.location &&
                 hotel.address.toLowerCase().includes(searchParams.location.toLowerCase());
         });
         setHotels(filteredHotels);
-        console.log('Filtered Hotels:', filteredHotels);
     };
 
     if (selectedId && hotelDetails) {
