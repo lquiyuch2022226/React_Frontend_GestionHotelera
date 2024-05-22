@@ -3,6 +3,7 @@ import { SearchDates } from '../SearchDates/SearchDates';
 import { useHotelsGet } from '../../shared/hooks';
 import { ShowHotel } from '../showHotel/ShowHotel';
 import { useHotel } from '../../shared/hooks';
+
 import './Hotel.css';
 
 export const Hotel = () => {
@@ -16,7 +17,6 @@ export const Hotel = () => {
     }, []);
 
     useEffect(() => {
-        console.log('Fetched Hotels:', allHotels);
         setHotels(allHotels);
     }, [allHotels]);
 
@@ -52,17 +52,17 @@ export const Hotel = () => {
                     <div style={{ margin: '20px 0' }}>
                         {hotels.map(hotel => (
                             <div key={hotel.id} className="hotel-card">
-                                <img src={hotel.imageUrl} alt={hotel.nameHotel} />
+                                <img src={hotel.imageUrl} alt={hotel.nameHotel}/>
                                 <div className="hotel-info">
                                     <h2 className="hotel-name">{hotel.nameHotel}</h2>
                                     <div className="hotel-details">
-                                        <p>{hotel.numStars} stars</p>
+                                        <p className="hotel-stars">{'★'.repeat(hotel.numStars)}</p>
                                         <p>{hotel.category}</p>
                                         <p>{hotel.address}</p>
                                     </div>
                                 </div>
-                                <div className="price-box">
-                                    <p className="price">${hotel.numberOfReservations}</p>
+                                <div className="viewMore-box">
+                                    <p className="reservations">{`Han reservado en este hotel " ${hotel.numberOfReservations} " veces`}</p>
                                     <button className="Button" onClick={() => handleOneHotelClick(hotel._id)}>View More</button>
                                 </div>
                             </div>

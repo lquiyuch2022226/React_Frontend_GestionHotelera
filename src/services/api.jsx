@@ -47,8 +47,8 @@ export const register = async (data) => {
 
 export const getUserEmail = async (email) =>{
     try{
-        console.log(email, email)
-        return await apiClient.get(`/user/user/${email}`)
+        console.log(email)
+        return await apiClient.get(`/user/email/${email}`)
     }catch(e){
         return{
             error: true,

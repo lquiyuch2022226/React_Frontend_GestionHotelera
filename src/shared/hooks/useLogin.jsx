@@ -27,6 +27,7 @@ export const useLogin = () => {
 
         /* ----------------------Guardar ID de Usuario -------------------*/ 
         const userForRoleResponse = await getUserEmailRequest(email);
+        console.log('userForRoleResponse: ', userForRoleResponse)
         const { idUser } = userForRoleResponse.data;
         console.log('Este es el id del usuario: ', idUser)
         localStorage.setItem('IdUser', JSON.stringify(idUser));

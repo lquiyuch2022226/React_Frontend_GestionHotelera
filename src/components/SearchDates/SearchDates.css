@@ -18,7 +18,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(170, 11, 11, 0.1);
-    max-width: 1000px;
+    max-width: 600px;
     margin: 20px auto;
 }
 
@@ -26,12 +26,17 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: 80px;
 }
 
 .input-group label {
     font-size: 12px;
     color: #FFFFFF;
     margin-bottom: 3px;
+}
+
+.text{
+    font-size: 20px  !important;;
 }
 
 .input {
@@ -41,11 +46,12 @@
     outline: none;
     font-size: 14px;
     color: white;
+    background-color: black;
     width: 200px;
 }
 
 .buttonSearch {
-    width: 300px;
+    width: 30%;
     padding: 0.8em 1.8em;
     border: 2px solid #4b0707;
     position: relative;
@@ -63,7 +69,7 @@
 .buttonSearch::before {
     content: '';
     width: 0;
-    height: 300%;
+    height: 400%;
     position: absolute;
     top: 50%;
     left: 50%;

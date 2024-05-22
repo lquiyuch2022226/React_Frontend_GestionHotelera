@@ -12,31 +12,31 @@ import logoImage from '../../assets/img/kha.png';
 export const Header = () => {
     const [menuOpened, setMenuOpened] = useState(false);
     const headerColor = useHeaderColor();
-    const { isLogged, logout } = useUserDetails()
+    const { isLogged, logout } = useUserDetails();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleNavigateToHomePage = () => {
-        navigate('/home')
-    }
+        navigate('/home');
+    };
 
     const handleNavigateToAuthPage = () => {
-        navigate('/auth')
-    }
+        navigate('/auth');
+    };
 
     const handleNavigateToSettingPage = () => {
-        navigate('/settings')
-    }
+        navigate('/settings');
+    };
 
     const handleLogout = () => {
-        logout()
-    }
+        logout();
+    };
 
     return (
         <section className="h-wrapper" style={{ background: headerColor }}>
             <div className="flexCenter innerWidth paddings h-container">
                 <Link to="/">
-                    <img src={logoImage} width={100} />
+                    <img src={logoImage} width={100} alt="Logo" />
                 </Link>
 
                 <OutsideClickHandler
@@ -45,14 +45,15 @@ export const Header = () => {
                     }}
                 >
                     <div
-                        // ref={menuRef}
                         className="flexCenter h-menu"
                         style={getMenuStyles(menuOpened)}
                     >
                         <a onClick={handleNavigateToHomePage}>Home</a>
+                        
+                        {isLogged && (
+                            <a onClick={handleNavigateToSettingPage}>My Account</a>
+                        )}
 
-                        <a onClick={handleNavigateToSettingPage}>My Account</a>
-                        {/* login button */}
                         {!isLogged ? (
                             <button className="button" onClick={handleNavigateToAuthPage}>
                                 Login
@@ -65,12 +66,11 @@ export const Header = () => {
                     </div>
                 </OutsideClickHandler>
 
-                {/* for medium and small screens */}
                 <div
                     className="menu-icon"
                     onClick={() => setMenuOpened((prev) => !prev)}
                 >
-                    {/*<BiMenuAltRight size={30} />*/}
+                    {/* <BiMenuAltRight size={30} /> */}
                 </div>
             </div>
         </section>

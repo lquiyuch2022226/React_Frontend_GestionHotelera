@@ -6,7 +6,6 @@ import heroImage from '../../assets/img/hotel1.jpg';
 import { useHotelsGet } from '../../shared/hooks';
 import { useRoomssGet } from '../../shared/hooks';
 import { useUsersGet } from '../../shared/hooks';
-//import SearchBar from "../SearchBar/SearchBar";
 
 export const Hero = () => {
     const { getHotels, allHotels, HowManyHotels, isFetching } = useHotelsGet();
