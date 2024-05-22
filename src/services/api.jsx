@@ -97,9 +97,26 @@ export const roomsGetOnlyHotel = async (idHotel) => {
     }
 };
 
+
+export const eventsHoteId = async (idHotel) => {
+    try {
+        const response = await apiClient.get(`/event/getByHotel/${idHotel}`);
+        return {
+            error: false,
+            data: response.data
+        };
+    } catch (e) {
+        return {
+            error: true,
+            e
+        };
+    }
+};
+
+
 export const usuariosGet = async () =>{
     try{
-        return await apiClient.get(`/user/`) 
+        return await apiClient.get(`/user/`)
     }catch(e){
         return{
             error: true,
@@ -161,6 +178,18 @@ export const postReservation = async (dates) => {
 
     try {
         return await apiClient.post(`/reservation/postRes/`, dates);
+    } catch (e) {
+        error: true,
+        e
+    }
+}
+
+
+export const postReservationEvent = async (dates) => {
+    
+
+    try {
+        return await apiClient.post(`/eventReservation/addEventR/`, dates);
     } catch (e) {
         error: true,
         e

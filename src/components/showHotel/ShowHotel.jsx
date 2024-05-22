@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useRoomsByHotel } from "../../shared/hooks";
+import { useEventsByHoteL } from "../../shared/hooks/useEventsByHotel.jsx"
 import "./showHotel.css";
 
 export const ShowHotel = ({ hotel }) => {
     const [desc, setDesc] = useState("");
     const [autor, setAutor] = useState("");
     const { roomsByHotelDetails, getRoomsByHotel } = useRoomsByHotel();
+    const { eventsByHotelDetails, getEventsByHotel } = useEventsByHoteL();
 
     const navigate = useNavigate();
 
@@ -22,16 +24,26 @@ export const ShowHotel = ({ hotel }) => {
         }
     };
 
-    const handleSubmit = () => {
-        const storedUserId = localStorage.getItem('IdUser');
-        console.log(storedUserId)
+    const handleSubmit = async () => {
+        try {
+            console.log(hotel.hotel._id)
+            await getEventsByHotel(hotel.hotel._id);
+        } catch (error) {
+            toast.error('Error al obtener las los eventos del hotel');
+        }
 
     };
 
     const handleReservClick = () => {
-        
+
         navigate('/reservation');
         localStorage.setItem('idHab', item._id)
+    };
+
+    const handleReservEventClick = () => {
+        navigate('/event');
+        localStorage.setItem('idEvent', item._id)
+        console.log(localStorage)
     };
 
 
@@ -57,13 +69,13 @@ export const ShowHotel = ({ hotel }) => {
                             <button className='buttonReserva' onClick={handleSubmitRooms}>
                                 <span>Ver Habitaciones</span>
                             </button>
-                            
+
                             <button className='buttonReserva' onClick={handleSubmit} >
                                 <span>Programar un evento</span>
                             </button>
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div >
@@ -80,7 +92,7 @@ export const ShowHotel = ({ hotel }) => {
                                 <div className='user'>
                                     <img
                                         src={'../../../'}
-                                        alt="Foto habitación"
+                                        alt="Foto habitacion"
                                         width={50}
                                         height={50}
                                         className='image_user'
@@ -101,13 +113,59 @@ export const ShowHotel = ({ hotel }) => {
                                     </button>
 
                                 </div>
-                                
+
                             </div>
                         ))}
 
 
                     </div>
                 </div>
+
+
+
+            </div>
+
+            <div className='container_2'>
+                <div className='input_Title'>
+                    <h4 className='fooder_title'>Events</h4>
+                </div>
+
+                <div>
+                    <div className='comments'>
+                        {eventsByHotelDetails.slice().reverse().map((resEv) => (
+                            <div className='comment' key={resEv._id}>
+                                <div className='user'>
+                                    <img
+                                        src={'../../../'}
+                                        alt="Foto event"
+                                        width={50}
+                                        height={50}
+                                        className='image_user'
+                                    />
+                                </div>
+                                <div>
+                                    <div className='info_comment'>
+                                        <p className='autorName'>{resEv._id}</p>
+                                        <p className='autorName'>{resEv.namEvent}</p>
+                                        <p className='date'>{'Capacity: '}{resEv.description}</p>
+                                        <p className='date'>{'Fecha: '}{resEv.dateEvent}</p>
+                                    </div>
+
+                                </div>
+                                <div className='espacio'>
+                                    <button className='button' onClick={handleReservEventClick}>
+                                        <span>Reserve this event</span>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        ))}
+
+
+                    </div>
+                </div>
+
             </div>
 
 
