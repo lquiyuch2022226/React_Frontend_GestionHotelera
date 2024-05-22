@@ -33,11 +33,11 @@ export const HeaderAdHotel = () => {
     }
 
     const handleUserInformation = () =>{
-        navigate('user-information')
+        navigate('/userInformation')
     }
 
     const handleInvoice = () =>{
-        navigate('invoice')
+        navigate('/invoice')
     }
 
     const handleLogout = () => {
@@ -65,9 +65,9 @@ export const HeaderAdHotel = () => {
 
                         <a onClick={handleNavigateToSettingPage}>My Account</a>
 
-                        <a onClick={handleNavigateToReserves}>Reserves</a>
-
                         <a onClick={handleUserInformation}>user-information</a>
+
+                        <a onClick={handleNavigateToReserves}>Reserves</a>
 
                         <a onClick={handleInvoice}>Invoice</a>
                         {/* login button */}
