@@ -5,7 +5,7 @@ import {SimpleTable} from '../../../components/SimpleTable/SimpleTable';
 export const UserInformation = () => {
 
   return (
-    <div>
+    <div className="invoice-container">
     <div>
       <HeaderAdHotel/>
     </div>
