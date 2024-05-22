@@ -6,6 +6,7 @@ import { Content } from "../../components/dashboard/Content";
 import { useUserDetails } from "../../shared/hooks";
 import { Header } from '../../components/header/Header'
 import { Hero } from '../../components/hero/Hero';
+import { HeaderAdHotel } from "../adminHotelPage/ComponentsAdHotel/header/HeaderAdHotel";
 
 import "./dashboardPage.css";
 
@@ -20,7 +21,7 @@ export const DashboardPage = () => {
     <div className="dashboard-container">
       <Content />
       <div className="Marco">
-        <Header />
+       <HeaderAdHotel/>
       </div>
     </div>
   );

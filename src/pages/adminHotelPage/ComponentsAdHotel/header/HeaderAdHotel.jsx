@@ -24,10 +24,6 @@ export const HeaderAdHotel = () => {
         navigate('/auth')
     }
 
-    const handleNavigateToSettingPage = () => {
-        navigate('/settings')
-    }
-
     const handleNavigateToReserves = () =>{
         navigate('/reserves')
     }
@@ -62,8 +58,6 @@ export const HeaderAdHotel = () => {
                         style={getMenuStyles(menuOpened)}
                     >
                         <a onClick={handleNavigateToHomePage}>Home</a>
-
-                        <a onClick={handleNavigateToSettingPage}>My Account</a>
 
                         <a onClick={handleUserInformation}>user-information</a>
 
