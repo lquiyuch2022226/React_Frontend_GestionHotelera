@@ -24,9 +24,6 @@ export const HeaderAdHotel = () => {
         navigate('/auth')
     }
 
-    const handleNavigateToReserves = () =>{
-        navigate('/reserves')
-    }
 
     const handleUserInformation = () =>{
         navigate('/userInformation')
@@ -60,8 +57,6 @@ export const HeaderAdHotel = () => {
                         <a onClick={handleNavigateToHomePage}>Home</a>
 
                         <a onClick={handleUserInformation}>user-information</a>
-
-                        <a onClick={handleNavigateToReserves}>Reserves</a>
 
                         <a onClick={handleInvoice}>Invoice</a>
                         {/* login button */}
