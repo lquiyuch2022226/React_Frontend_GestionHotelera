@@ -1,0 +1,209 @@
+body,
+h1,
+h2,
+p,
+ul,
+li,
+form,
+input,
+button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #0c0231;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.hotel-management-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #d3e4f5;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #007bff;
+}
+
+.hotel-management-container h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #141414;
+    padding-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+form input {
+    flex: 1 1 calc(50% - 20px);
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form input:focus {
+    border-color: #007bff;
+}
+
+form .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button.submit-button {
+    background-color: #00bfff;
+    color: #fff;
+    width: 100%;
+    margin-top: 10px;
+}
+
+form button.submit-button:hover {
+    background-color: #009acd;
+}
+
+form button.reset-button {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+form button.reset-button:hover {
+    background-color: #5a6268;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #f4f6f8;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+ul li .button-container {
+    display: flex;
+    gap: 10px;
+}
+
+ul li button {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+ul li button.edit-button {
+    background-color: #ffc107;
+}
+
+ul li button.edit-button:hover {
+    background-color: #e0a800;
+}
+
+ul li button.delete-button {
+    background-color: #dc3545;
+}
+
+ul li button.delete-button:hover {
+    background-color: #c82333;
+}
+
+.statistics-container {
+    margin-top: 30px;
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.statistics-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.statistics-container canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.info-item {
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    form input {
+        flex: 1 1 100%;
+    }
+    form .button-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hotel-management-container {
+        padding: 15px 20px;
+    }
+    form {
+        gap: 5px;
+    }
+    form input {
+        margin: 5px 0;
+        padding: 10px 10px;
+    }
+    ul li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    ul li .button-container {
+        justify-content: flex-start;
+        gap: 5px;
+        margin-top: 10px;
+    }
+}

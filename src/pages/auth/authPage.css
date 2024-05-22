@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('../../assets/img/fondo.jpg') center/cover no-repeat;
+    background: url('../../assets/img/fondo-2.jpeg') center/cover no-repeat;
 }
 
 .auth-background {

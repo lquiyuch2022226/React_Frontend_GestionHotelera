@@ -13,7 +13,6 @@ export const AuthPage = () => {
 
   return (
     <div className="auth-container">
-      {/* Fondo de la imagen con transparencia */}
       <div className="auth-background"></div>
       <div className="auth-form-container">
         {isLogin ? (

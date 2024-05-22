@@ -1,1 +1,3 @@
-export { AdminPage } from './AdminPage';
+export { HotelManagement }
+from './AdminPage';
+export * from './AdminPage'

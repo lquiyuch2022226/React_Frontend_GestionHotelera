@@ -152,6 +152,41 @@ export const getHotels = async () =>{
     }
 }
 
+export const postHotel = async (hotelData) => {
+    try {
+        return await apiClient.post('/hotel/addHotel', hotelData);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        };
+    }
+};
+
+export const putHotel = async (hotelId, hotelData) => {
+    try {
+        return await apiClient.put(`/hotel/updateHotel/${hotelId}`, hotelData);
+    } catch (error) {
+        console.error('Error updating hotel:', error);
+        return {
+            error: true,
+            message: 'Error updating hotel'
+        };
+    }
+};
+
+export const deleteHotel = async (hotelId) => {
+    try {
+        const response = await apiClient.delete(`/hotel/deleteHotel/${hotelId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error en deleteHotel:', error);
+        throw error;
+    }
+};
+
+
+
 export const hotelById = async (id) =>{
     try{
         return await apiClient.get(`/hotel/one/${id}`) 
@@ -179,8 +214,11 @@ export const postReservation = async (dates) => {
     try {
         return await apiClient.post(`/reservation/postRes/`, dates);
     } catch (e) {
-        error: true,
-        e
+        return{
+            error: true,
+            e
+            
+        }
     }
 }
 
@@ -191,15 +229,22 @@ export const postReservationEvent = async (dates) => {
     try {
         return await apiClient.post(`/eventReservation/addEventR/`, dates);
     } catch (e) {
-        error: true,
-        e
+        return{
+            error: true,
+            e
+            
+        }
     }
 }
 
 export const getIdUser = async(email) => {
     try {
         return await apiClient.get('/user/'+email)
-    } catch (error) {
-        
+    } catch (e) {
+        return{
+            error: true,
+            e
+            
+        }
     }
 }
